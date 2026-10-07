@@ -1,0 +1,21 @@
+{
+  "id": "goal_multifile",
+  "description": "Complete a multi-artifact goal under an external acceptance contract.",
+  "category": "goal",
+  "mode": "goal",
+  "fixture": "fixtures/empty",
+  "turns": [
+    "创建 alpha.txt 和 beta.txt。alpha.txt 的内容必须是 alpha 加换行，beta.txt 的内容必须是 beta 加换行。"
+  ],
+  "checks": [
+    {"type": "file_equals", "path": "alpha.txt", "text": "alpha\n"},
+    {"type": "file_equals", "path": "beta.txt", "text": "beta\n"},
+    {"type": "goal_status", "value": "complete"},
+    {"type": "max_model_calls", "value": 12},
+    {"type": "policy_no_violation"}
+  ],
+  "config": {
+    "goal_cycles": 4
+  }
+}
+

@@ -1,0 +1,29 @@
+{
+  "id": "repo_log_pipeline",
+  "description": "Parse and summarize JSONL events across repository modules.",
+  "category": "repository",
+  "mode": "agent",
+  "fixture": "fixtures/repo_log_pipeline",
+  "turns": [
+    "修复 logs.parse_jsonl 与 summarize。parse_jsonl 忽略空白行，每个非空行必须是 JSON 对象并含 level 字符串和 ISO-8601 timestamp；错误抛 ValueError 且信息包含 1-based 行号。支持 Z。summarize 返回 level_counts、first_timestamp、last_timestamp；按实际时间比较并输出规范 UTC 的 Z 字符串。输入为空时两个时间为 None。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_log_pipeline.py"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim"
+  },
+  "suite": "repository",
+  "reference": "references/repo_log_pipeline",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

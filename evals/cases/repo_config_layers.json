@@ -1,0 +1,29 @@
+{
+  "id": "repo_config_layers",
+  "description": "Deep-merge application configuration without mutating defaults or overrides.",
+  "category": "repository",
+  "mode": "agent",
+  "fixture": "fixtures/repo_config_layers",
+  "turns": [
+    "这个小仓库的配置合并有缺陷。阅读 app/ 下的实现并修复 load_config：递归合并字典，用户值覆盖默认值，缺失的嵌套默认值必须保留，列表应整体替换；不得修改传入对象。defaults 或 overrides 不是字典时抛 TypeError。保留公共 API，不引入第三方依赖。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_config_layers.py"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim"
+  },
+  "suite": "repository",
+  "reference": "references/repo_config_layers",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "repo_inventory_atomicity",
+  "description": "Reserve inventory atomically across duplicate order lines.",
+  "category": "repository",
+  "mode": "goal",
+  "fixture": "fixtures/repo_inventory_atomicity",
+  "turns": [
+    "修复 domain 库存预留逻辑。Inventory.reserve(lines) 接受 (sku, quantity) 序列： quantity 必须是正整数且 bool 不算整数，非法 quantity 抛 ValueError；重复 SKU 要合并后校验。SKU 不存在、数量非法或库存不足时必须抛出合适异常，并保证任何库存都没有改变。成功时一次性扣减。Orders.create_order 的现有 API 必须继续工作。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_inventory_atomicity.py"
+    },
+    {
+      "type": "goal_status",
+      "value": "complete"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim",
+    "goal_cycles": 6,
+    "allow_bash": true,
+    "permission_mode": "allow"
+  },
+  "suite": "repository",
+  "reference": "references/repo_inventory_atomicity",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

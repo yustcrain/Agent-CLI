@@ -1,0 +1,30 @@
+{
+  "id": "bigcodebench-7",
+  "description": "Adapted BigCodeBench/7 (not an official benchmark score)",
+  "category": "coding",
+  "mode": "agent",
+  "suite": "bigcodebench",
+  "fixture": "fixtures/bigcodebench-7",
+  "turns": [
+    "Implement solution.py according to its specification. Preserve the entry-point signature."
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/bigcodebench-7.py"
+    }
+  ],
+  "config": {
+    "max_turns": 20,
+    "test_image": "python:3.11-slim"
+  },
+  "provenance": {
+    "dataset": "bigcode/bigcodebench",
+    "revision": "v0.1.1",
+    "split": "v0.1.1",
+    "export_sha256": "c56ccb39ad0b7bce6380d1a0c439b8b03bd7e53cf045d31b149f633f0085c8f6",
+    "acquisition": "local-export",
+    "task_id": "BigCodeBench/7",
+    "source_row_sha256": "50019be2878f2214bcd32f8aa9e9cf3e83777ad474ce5ba43eaa77e3ab9d7728"
+  }
+}

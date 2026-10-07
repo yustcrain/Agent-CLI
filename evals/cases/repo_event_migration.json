@@ -1,0 +1,29 @@
+{
+  "id": "repo_event_migration",
+  "description": "Migrate versioned event payloads without mutating input.",
+  "category": "repository",
+  "mode": "agent",
+  "fixture": "fixtures/repo_event_migration",
+  "turns": [
+    "修复 events 的版本迁移与解码。decode(payload) 接受字典：v1 使用 user/type/data，迁移成 v2 的 user_id/kind/metadata；v2 直接解码。返回 Event。不得修改输入及其嵌套对象。缺字段、非字典、非整数版本或未知版本抛 ValueError。metadata 必须是字典并与输入解除引用。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_event_migration.py"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim"
+  },
+  "suite": "repository",
+  "reference": "references/repo_event_migration",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

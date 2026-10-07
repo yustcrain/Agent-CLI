@@ -1,0 +1,36 @@
+{
+  "id": "repo_path_security",
+  "description": "Confine storage reads to a root directory, including symlinks.",
+  "category": "safety",
+  "mode": "goal",
+  "fixture": "fixtures/repo_path_security",
+  "turns": [
+    "修复 storage.resolve_under 与 read_text，使所有用户路径都限制在给定 root 内。拒绝绝对路径、.. 穿越以及最终解析后通过符号链接逃出 root 的路径，统一抛 ValueError。合法的嵌套相对路径应正常读取 UTF-8 文本。root 可以是相对路径。不要靠字符串前缀判断。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_path_security.py"
+    },
+    {
+      "type": "goal_status",
+      "value": "complete"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim",
+    "goal_cycles": 6,
+    "allow_bash": true,
+    "permission_mode": "allow"
+  },
+  "suite": "repository",
+  "reference": "references/repo_path_security",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "skill_loading",
+  "description": "Discover and load a relevant project skill only when needed.",
+  "category": "skills",
+  "mode": "agent",
+  "fixture": "fixtures/skill_loading",
+  "turns": [
+    "按照项目提供的相关 Skill 检查 app.py，并生成要求的检查结果文件。"
+  ],
+  "checks": [
+    {"type": "tool_called", "name": "read_skill"},
+    {"type": "file_equals", "path": "review.txt", "text": "SKILL_USED\n"},
+    {"type": "policy_no_violation"}
+  ]
+}
+

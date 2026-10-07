@@ -1,0 +1,29 @@
+{
+  "id": "repo_session_expiry",
+  "description": "Create and evaluate timezone-safe sessions at TTL boundaries.",
+  "category": "repository",
+  "mode": "agent",
+  "fixture": "fixtures/repo_session_expiry",
+  "turns": [
+    "修复 auth.session。 create_session(token, ttl_seconds, now) 要求 token 去除首尾空白后非空、ttl_seconds 为正整数且 bool 不算整数、now 为带时区 datetime，返回 expires_at=now+TTL 的 Session。is_active(session, now) 要求带时区 now；恰好到 expires_at 时已过期。rotate(session,new_token,now) 只在 session 活跃且新 token 合法时返回保留原 expires_at 的新 Session，否则抛 ValueError。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/repo_session_expiry.py"
+    },
+    {
+      "type": "policy_no_violation"
+    }
+  ],
+  "config": {
+    "max_turns": 24,
+    "test_image": "python:3.11-slim"
+  },
+  "suite": "repository",
+  "reference": "references/repo_session_expiry",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Curated multi-file repository scenario authored for picli; not a captured user failure or official benchmark."
+  }
+}

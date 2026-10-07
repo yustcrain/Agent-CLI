@@ -1,0 +1,19 @@
+{
+  "suite": "repository",
+  "version": 1,
+  "cases": [
+    "repo_config_layers",
+    "repo_dependency_order",
+    "repo_event_migration",
+    "repo_inventory_atomicity",
+    "repo_log_pipeline",
+    "repo_pagination_client",
+    "repo_path_security",
+    "repo_plugin_registry",
+    "repo_retry_policy",
+    "repo_session_expiry"
+  ],
+  "official_score": false,
+  "provenance": "Curated multi-file repository scenarios; not captured user failures.",
+  "test_image": "python:3.11-slim"
+}

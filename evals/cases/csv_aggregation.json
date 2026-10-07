@@ -1,0 +1,22 @@
+{
+  "id": "csv_aggregation",
+  "description": "Fix quoted CSV parsing and exact repeated-name totals.",
+  "category": "coding",
+  "mode": "agent",
+  "fixture": "fixtures/csv_summary",
+  "turns": [
+    "修复 report.py 的 summarize_csv(text)。输入有 name,amount 表头，必须支持标准 CSV 引号和姓名中的逗号，将同名金额累加为 Decimal；空数据返回空字典；金额不是有效数字时抛 ValueError；支持负金额。保留签名，不引入第三方依赖。"
+  ],
+  "checks": [
+    {
+      "type": "python_test",
+      "path": "checks/csv_summary.py"
+    }
+  ],
+  "config": {},
+  "suite": "capability",
+  "provenance": {
+    "type": "local-authored",
+    "note": "Synthetic regression/challenge; not a captured user failure or official benchmark."
+  }
+}
