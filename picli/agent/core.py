@@ -22,7 +22,6 @@ class Agent:
         cancel_check=None,
         store=None,
     ):
-        self.tool_observer = None  # Optional audit sink, independent of compacted context.
         self.provider = provider
         self.tools = tools
         if hasattr(provider, "set_tool_schemas"):
@@ -69,7 +68,6 @@ class Agent:
             "model_turns": 0,
             "max_turns": self.max_turns,
             "tool_calls": [],
-            "tool_observer": self.tool_observer,
             "finish_reason": "",
         }
         self.flow.run(shared)

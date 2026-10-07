@@ -2,9 +2,7 @@
 __pycache__/
 .pi-python/
 .env
-evals/results/
 .DS_Store
-evals/downloads/
 
 /main/
 /workspace/

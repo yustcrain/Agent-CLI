@@ -39,9 +39,8 @@ python -m picli --workspace ./workspace
 | `picli/skills/` | 项目技能发现、校验与加载 |
 | `picli/cli/` | 参数、交互命令、终端输入与展示 |
 | `picli/config.py`、`diagnostics.py` | 共享配置与运行诊断 |
-| `tests/` | 按 Agent、存储、CLI 和评估模块分组的测试 |
-| `evals/` | 模型评估执行器、场景、fixture、独立检查和参考答案 |
-| `scripts/` | 启动与评估脚本 |
+| `tests/` | 按 Agent、存储和 CLI 模块分组的自动化测试 |
+| `scripts/` | CLI 启动脚本 |
 | `docs/` | 专题文档 |
 | `workspace/` | 默认本地运行工作区，包含用户操作文件，不是应用源码 |
 
@@ -53,7 +52,6 @@ python -m picli --workspace ./workspace
 - [上下文、会话与存储](docs/storage.md)
 - [持续目标与验收](docs/goals.md)
 - [项目技能](docs/skills.md)
-- [评估说明](docs/evaluation.md) · [评估执行细节](evals/README.md)
 
 ## 测试与维护
 
@@ -66,6 +64,3 @@ python -m picli --workspace ./workspace
 旧命令 `python -m picli.storage_maintenance` 仍可使用。
 CLI 会话存入 `.pi-python/sessions.sqlite3`，大文本存入 `.pi-python/artifacts/`。旧 JSON 会话按需迁移，原文件保留。
 
-评估中的 `fixtures/`、`checks/`、`references/` 是测试资产；`downloads/` 和 `results/`
-分别是本地下载数据与运行报告，不应与应用源码混淆。Docker 仅用于可选的评估隔离，
-日常运行 CLI 无需 Docker。

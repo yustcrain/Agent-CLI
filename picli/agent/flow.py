@@ -171,9 +171,6 @@ class ExecuteToolsNode(Node):
     ) -> str:
         results, interrupted = exec_res
         session: Session = shared["session"]
-        observer = shared.get("tool_observer")
-        if observer is not None:
-            observer(prep_res, results)
         session.messages.extend(results)
         session.save()
         if interrupted:

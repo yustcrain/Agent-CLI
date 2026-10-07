@@ -8,7 +8,7 @@
 - Provider 接口支持原生 Anthropic、OpenAI-compatible 和完全离线的确定性 Mock 实现。
 - 工具通过 `ToolRegistry` 注册，Agent Loop 不包含具体工具分支；新增工具只需要注册 schema 和 handler。
 - 交互终端使用 `prompt_toolkit` 提供持久输入历史、Tab 命令补全和多行编辑；TTY 中使用 `rich`
-  实时渲染 Markdown、代码块和等待状态，管道及 Eval 输出自动退回纯文本。
+  实时渲染 Markdown、代码块和等待状态，非交互输出自动退回纯文本。
 - read/write/edit 在工作区内自动允许；绝对路径、`~` 和越出工作区的相对路径会请求权限。
   edit 仍要求原文唯一匹配。
 - 默认使用 `workspace-write`：工作区普通文件操作直接执行，shell、敏感文件和工作区外操作按规则请求授权。

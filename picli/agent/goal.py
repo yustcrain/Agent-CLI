@@ -354,7 +354,6 @@ class GoalRunner:
             flow.run({
                 "goal": goal,
                 "session": self.agent.store,
-                "tool_observer": self.agent.tool_observer,
             })
         except KeyboardInterrupt:
             goal.status = "paused"
